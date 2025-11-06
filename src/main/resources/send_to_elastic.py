@@ -1,18 +1,14 @@
-#!/usr/bin/env python3
+import requests
+import json
 from datetime import datetime
-from elasticsearch import Elasticsearch
 
-# Połączenie z Elasticsearch
-es = Elasticsearch("http://localhost:9200")  # zmień host i port
-
-# Dane do wysłania
-doc = {
+url = "http://localhost:9200/jenkins-builds/_doc/"
+data = {
     "job": "my-job",
     "build_number": 123,
     "status": "SUCCESS",
     "timestamp": datetime.utcnow().isoformat()
 }
 
-# Wysłanie do indeksu 'jenkins-builds'
-res = es.index(index="jenkins-builds", document=doc)
-print(res)
+response = requests.post(url, headers={"Content-Type": "application/json"}, data=json.dumps(data))
+print(response.status_code, response.text)
