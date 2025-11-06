@@ -20,6 +20,18 @@ public class ApiTest {
 //    private static final String ELASTIC_PASS = "MR8Ydpr+vWHN9pccrE23"; // <- Twoje hasło do Elasticsearch
 
     @Test
+    void shouldReturnWrongStatusCode() {
+        String testName = "GET /users/2";
+        String apiUrl = "https://reqres.in/api/users/2";
+
+        Response response = RestAssured.get(apiUrl);
+        int statusCode = response.getStatusCode();
+
+        // Walidacja przykładowa
+        assertThat(statusCode, equalTo(500));
+    }
+
+    @Test
     void shouldReturnCorrectStatusCode() {
         String testName = "GET /users/2";
         String apiUrl = "https://reqres.in/api/users/2";
