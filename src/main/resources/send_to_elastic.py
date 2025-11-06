@@ -2,7 +2,7 @@ import requests
 import json
 from datetime import datetime
 
-url = "http://localhost:9200/jenkins-builds/_doc/"
+url = "http://elasticsearch:9200/jenkins-builds/_doc/"
 data = {
     "job": "my-job",
     "build_number": 123,
